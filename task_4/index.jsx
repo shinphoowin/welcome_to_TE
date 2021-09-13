@@ -1,17 +1,12 @@
-import { Component, createRef } from 'react';
+import { Component, useRef } from "react";
 
-class MainComponent extends Component {
-    myRef = createRef(); // create simple ref
-
-    render() {
-        return <ChildComponent myRef={this.myRef} />; // pass ref as a prop
-    }
+const MainComponent = () => {
+  const myRef = useRef(null); // create simple ref
+  return <ChildComponent myRef={myRef} />; // pass ref as a prop
 };
 
-class ChildComponent extends Component {
-    render() {
-        return (
-            <button ref={this.props.myRef}>button with ref</button> // receive ref and set it to the button
-        );
-    }
+const ChildComponent = ({ myRef }) => {
+  return (
+    <button ref={myRef}>button with ref</button> // receive ref and set it to the button
+  );
 };
